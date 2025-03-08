@@ -24,20 +24,18 @@ function addMessage(sender, message) {
     const messageElement = document.createElement("div");
     messageElement.classList.add("chat-message", sender === "user" ? "user-message" : "bot-message");
 
-    // Replace \n with <br> for proper formatting
     messageElement.innerHTML = message.replace(/\n/g, "<br>");
 
     chatBox.appendChild(messageElement);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// Handle key press (Enter key) without submitting form
-document.getElementById("user-input").addEventListener("keypress", function(event) {
+// Handle key press (Enter key)
+function handleKeyPress(event) {
     if (event.key === "Enter") {
-        event.preventDefault(); // Prevent form submission
         sendMessage();
     }
-});
+}
 
 function sendMessage() {
     const userInput = document.getElementById("user-input").value.trim();
@@ -46,14 +44,13 @@ function sendMessage() {
     addMessage("user", userInput);
     document.getElementById("user-input").value = "";
 
-    fetch("https://d268dd94-15ed-4faa-981e-65a738ccda09-00-15vyri4x1rmvc.sisko.repl.co:5000/", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ message: userInput, user_name: userName })
-})
-
+    fetch("https://d268dd94-15ed-4faa-981e-65a738ccda09-00-15vyri4x1rmvc.sisko.repl.co:5000/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: userInput, user_name: userName })
+    })
     .then(response => response.json())
     .then(data => {
         if (data.assistant_message) {
