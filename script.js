@@ -46,13 +46,14 @@ function sendMessage() {
     addMessage("user", userInput);
     document.getElementById("user-input").value = "";
 
-    fetch("https://d268dd94-15ed-4faa-981e-65a738ccda09-00-15vyri4x1rmvc.sisko.repl.co/chat", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ message: userInput, user_name: userName })
-    })
+    fetch("https://d268dd94-15ed-4faa-981e-65a738ccda09-00-15vyri4x1rmvc.sisko.repl.co:5000/chat", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ message: userInput, user_name: userName })
+})
+
     .then(response => response.json())
     .then(data => {
         if (data.assistant_message) {
