@@ -31,13 +31,13 @@ function addMessage(sender, message) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-
-// Handle key press (Enter key)
-function handleKeyPress(event) {
+// Handle key press (Enter key) without submitting form
+document.getElementById("user-input").addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
+        event.preventDefault(); // Prevent form submission
         sendMessage();
     }
-}
+});
 
 function sendMessage() {
     const userInput = document.getElementById("user-input").value.trim();
@@ -46,7 +46,7 @@ function sendMessage() {
     addMessage("user", userInput);
     document.getElementById("user-input").value = "";
 
-    fetch("http://127.0.0.1:5000/chat", {
+    fetch("https://d268dd94-15ed-4faa-981e-65a738ccda09-00-15vyri4x1rmvc.sisko.repl.co/chat", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
