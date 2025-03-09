@@ -32,9 +32,17 @@ body {
     border-radius: 25%;
 }
 
+.logo img:hover{
+    border: 2px solid #f4a261;
+}
+
 .nav-title {
     font-size: 20px;
     font-weight: bold;
+}
+
+.nav-title:hover{
+    text-decoration: underline;
 }
 
 /* Welcome Modal */
