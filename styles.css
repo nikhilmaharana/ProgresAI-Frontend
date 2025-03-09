@@ -91,7 +91,7 @@ button:hover {
 }
 
 .chat-container {
-    position: fixed;
+    position: sticky;
     display: none;
     margin: 2px;
     width: 100%;
