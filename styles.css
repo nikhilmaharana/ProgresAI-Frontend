@@ -16,6 +16,7 @@ body {
 
 /* Navbar */
 .navbar {
+    position: sticky;
     width: 100%;
     background: #4CAF50;
     display: flex;
